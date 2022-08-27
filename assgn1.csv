@@ -1,0 +1,25 @@
+select count(speed) from planes;
+select max(speed) from planes;
+select min(speed) from planes;
+
+select distance from flights where year = 2013 and month = 1;
+select distance from flights where tailnum='' and (year = 2013 and month = 1);
+select sum(distance) from flights where year=2013 and (month = 7 and day =5);
+
+SELECT sum(distance) from flights 
+INNER JOIN planes
+ON flights.year = planes.year 
+where flights.year=2013 and (flights.month = 7 and flights.day = 5)
+group by planes.manufacturer;
+
+SELECT sum(distance) from flights 
+left JOIN planes
+ON flights.year = planes.year 
+where flights.year=2013 and (flights.month = 7 and flights.day = 5)
+group by planes.manufacturer;
+
+SELECT airlines.name,flights.year from flights 
+JOIN airlines
+ON flights.carrier = airlines.carrier
+join airports
+on airports.name = airlines.name;
